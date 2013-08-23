@@ -25,6 +25,13 @@ function loadTesters(filename) {
     testers.push(tester);
   });
 
+  testers.filterByCountry = function (name) {
+    name = name.toUpperCase();
+    if (name === 'ALL') {
+      return this;
+    }
+  }
+
   return testers;
 }
 

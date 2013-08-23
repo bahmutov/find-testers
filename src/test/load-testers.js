@@ -14,3 +14,10 @@ gt.test('load test data', function () {
   gt.equal(testers[0].firstName, 'Miguel', 'first name');
   gt.equal(testers[8].lastName, 'Thiagarajan', 'last name');
 });
+
+gt.test('find by country ALL', function () {
+  var testers = load(filename);
+  gt.func(testers.filterByCountry, 'filterByCountry');
+  var found = testers.filterByCountry('ALL');
+  gt.equal(found.length, testers.length, 'all should match');
+});
