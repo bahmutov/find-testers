@@ -9,10 +9,10 @@ gt.test('load test data', function () {
   gt.arity(load, 1, 'load takes single argument');
   var testers = load(filename);
   gt.defined(testers, 'loaded testers');
-  gt.equal(testers.length, 9, 'should have 9 testers');
-  gt.equal(testers[0].testerId, '1', 'id is correct');
-  gt.equal(testers[0].firstName, 'Miguel', 'first name');
-  gt.equal(testers[8].lastName, 'Thiagarajan', 'last name');
+  gt.equal(testers.length(), 9, 'should have 9 testers');
+  gt.equal(testers.testers[0].testerId, '1', 'id is correct');
+  gt.equal(testers.testers[0].firstName, 'Miguel', 'first name');
+  gt.equal(testers.testers[8].lastName, 'Thiagarajan', 'last name');
 });
 
 gt.test('find by country ALL', function () {
@@ -20,4 +20,10 @@ gt.test('find by country ALL', function () {
   gt.func(testers.filterByCountry, 'filterByCountry');
   var found = testers.filterByCountry('ALL');
   gt.equal(found.length, testers.length, 'all should match');
+});
+
+gt.test('find by country GB', function () {
+  var testers = load(filename);
+  var found = testers.filterByCountry('GB');
+  gt.equal(found.length(), 3, '3 testers in GB');
 });

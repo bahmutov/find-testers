@@ -2,7 +2,9 @@ var check = require('check-types');
 var fs = require('fs');
 var eol = '\n';
 
-function loadTesters(filename) {
+function Testers (filename) {
+  this.testers = [];
+
   check.verifyString(filename, 'missing filename');
   var content = fs.readFileSync(filename, 'utf-8');
   check.verifyString(content, 'missing content from ' + filename);
@@ -11,7 +13,6 @@ function loadTesters(filename) {
     lines.length + ' in file ' + filename);
 
   var columns = getColumns(lines[0]);
-  var testers = [];
   lines.forEach(function (line, index) {
     if (index === 0) {
       return; // we already have columns
@@ -22,17 +23,28 @@ function loadTesters(filename) {
     values.forEach(function (value, columnIndex) {
       tester[columns[columnIndex]] = value;
     });
-    testers.push(tester);
-  });
+    this.testers.push(tester);
+  }, this);
+}
 
-  testers.filterByCountry = function (name) {
-    name = name.toUpperCase();
-    if (name === 'ALL') {
-      return this;
-    }
+Testers.prototype.length = function () {
+  return this.testers.length;
+}
+
+Testers.prototype.filterByCountry = function (name) {
+  name = name.toUpperCase();
+  if (name === 'ALL') {
+    return this;
   }
 
-  return testers;
+  this.testers = this.testers.filter(function (tester) {
+    return tester.country.toUpperCase() === name;
+  });
+  return this;
+}
+
+function loadTesters(filename) {
+  return new Testers(filename);
 }
 
 function getColumns(line) {
