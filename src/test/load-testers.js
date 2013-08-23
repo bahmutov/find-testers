@@ -8,5 +8,5 @@ var filename = path.join(__dirname, 'testers.csv');
 gt.test('load test data', function () {
   gt.arity(load, 1, 'load takes single argument');
   var testers = load(filename);
-  // gt.object(testers, 'loaded testers object');
+  gt.defined(testers, 'loaded testers');
 });
