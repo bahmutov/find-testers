@@ -16,6 +16,13 @@ function loadTesters(filename) {
     if (index === 0) {
       return; // we already have columns
     }
+
+    var tester = {};
+    var values = getColumns(line);
+    values.forEach(function (value, columnIndex) {
+      tester[columns[columnIndex]] = value;
+    });
+    testers.push(tester);
   });
 
   return testers;
@@ -35,7 +42,7 @@ function stripQuotes(words) {
   return words.map(function (word) {
     check.verifyString(word, 'expected string, found ' + word);
     word = word.trim();
-    return word.replace('"', '');
+    return word.replace(/"/g, '');
   });
 }
 
