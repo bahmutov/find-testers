@@ -4,7 +4,7 @@
   "description": "Finds testers in given country with matching devices",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gt src/**/test/*.js"
   },
   "repository": "",
   "keywords": [
@@ -13,7 +13,8 @@
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "check-types": "~0.6.4"
+    "check-types": "~0.6.4",
+    "csv-load-sync": "0.0.2"
   },
   "devDependencies": {
     "gt": "~0.8.8"
