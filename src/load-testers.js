@@ -39,6 +39,7 @@ Testers.prototype.filterByCountry = function (names) {
 }
 
 function loadTesters(filename) {
+  filename = filename || path.join(__dirname, '../data/testers.csv');
   return new Testers(filename);
 }
 
