@@ -1,13 +1,14 @@
 var check = require('check-types');
 var csvLoad = require('csv-load-sync');
+var path = require('path');
 
-function Testers (filename) {
+function Testers(filename) {
   this.testers = csvLoad(filename);
 }
 
 Testers.prototype.length = function () {
   return this.testers.length;
-}
+};
 
 function allToUpperCase(items) {
   return items.map(function (item) {
@@ -36,11 +37,11 @@ Testers.prototype.filterByCountry = function (names) {
     return countries[tester.country.toUpperCase()];
   });
   return this;
-}
+};
 
-function loadTesters(filename) {
+function load(filename) {
   filename = filename || path.join(__dirname, '../data/testers.csv');
   return new Testers(filename);
 }
 
-module.exports = loadTesters;
+module.exports = load;

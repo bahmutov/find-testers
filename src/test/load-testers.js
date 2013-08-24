@@ -41,6 +41,6 @@ gt.test('find by country US or GB or jp', function () {
 });
 
 gt.test('load default', function () {
-  var testers = load(filename);
+  var testers = load();
   gt.equal(testers.length(), 9, '9 default testers');
 });
