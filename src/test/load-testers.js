@@ -33,3 +33,9 @@ gt.test('find by country US or GB', function () {
   var found = testers.filterByCountry(['US', 'GB']);
   gt.equal(found.length(), 6, '6 testers in US or GB');
 });
+
+gt.test('find by country US or GB or jp', function () {
+  var testers = load(filename);
+  var found = testers.filterByCountry(['US', 'GB', 'jp']);
+  gt.equal(found.length(), 9, '9 testers in US or GB or JP');
+});
