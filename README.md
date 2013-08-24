@@ -7,6 +7,7 @@ A major feature of uTest is our tester-matching algorithm.  We are able to drill
 Your goal will be to write a simpler matching algorithm that takes two matching criteria (country and device) and presents a sorted list of results. The sort order is based on what the system is suggesting a user should select (more details below).
 
 ## Data Set Provided
+
 * testers.csv: CSV list of testers. Each row corresponds to a tester.
 * devices.csv: CSV list of all available devices. Each row corresponds to a mobile device. This is all the possible devices a tester can have.
 * tester_device.csv: CSV list of tester to device. These are the devices a tester has. Each row corresponds to a tester and a device.

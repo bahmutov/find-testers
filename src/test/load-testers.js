@@ -27,3 +27,9 @@ gt.test('find by country GB', function () {
   var found = testers.filterByCountry('GB');
   gt.equal(found.length(), 3, '3 testers in GB');
 });
+
+gt.test('find by country US or GB', function () {
+  var testers = load(filename);
+  var found = testers.filterByCountry(['US', 'GB']);
+  gt.equal(found.length(), 6, '6 testers in US or GB');
+});

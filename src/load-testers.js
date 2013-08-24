@@ -9,14 +9,31 @@ Testers.prototype.length = function () {
   return this.testers.length;
 }
 
-Testers.prototype.filterByCountry = function (name) {
-  name = name.toUpperCase();
-  if (name === 'ALL') {
+function allToUpperCase(items) {
+  return items.map(function (item) {
+    check.verifyString(item, 'expected string item');
+    return item.toUpperCase();
+  });
+}
+
+Testers.prototype.filterByCountry = function (names) {
+  if (check.isString(names)) {
+    names = [names];
+  }
+  check.verifyArray(names, 'expected array of countries');
+
+  names = allToUpperCase(names);
+  if (names.length === 1 && names[0] === 'ALL') {
     return this;
   }
 
+  var countries = {};
+  names.forEach(function (country) {
+    countries[country] = true;
+  });
+
   this.testers = this.testers.filter(function (tester) {
-    return tester.country.toUpperCase() === name;
+    return countries[tester.country.toUpperCase()];
   });
   return this;
 }
