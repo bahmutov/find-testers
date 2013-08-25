@@ -44,3 +44,26 @@ gt.test('load default', function () {
   var testers = load();
   gt.equal(testers.length(), 9, '9 default testers');
 });
+
+gt.test('devices loaded', function () {
+  var testers = load();
+  var first = testers.testers[0];
+  gt.equal(first.testerId, '1');
+
+  gt.ok(first.devices['1'], 'first tester has device 1');
+  gt.ok(first.devices['2'], 'first tester has device 2');
+  gt.ok(first.devices['3'], 'first tester has device 3');
+  gt.ok(first.devices['10'], 'first tester has device 10');
+});
+
+gt.test('filter by device - allow ALL', function () {
+  var testers = load();
+  var filtered = testers.filterByDevice('ALL');
+  gt.equal(filtered.length(), 9, 'all testers remain');
+});
+
+gt.test('filter by device - iPhone 4', function () {
+  var testers = load();
+  var filtered = testers.filterByDevice('iPhone 4');
+  gt.equal(filtered.length(), 2, 'two testers');
+});

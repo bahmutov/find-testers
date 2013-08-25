@@ -17,3 +17,15 @@ gt.test('find Galaxy', function () {
   var found = devices.filterByDescription(['Galaxy S3', 'Galaxy S4']);
   gt.equal(found.length(), 2, '2 Galaxy phone models');
 });
+
+gt.test('all devices', function () {
+  var devices = load();
+  var found = devices.filterByDescription(['all']);
+  gt.equal(found.length(), 10);
+});
+
+gt.test('all devices as string', function () {
+  var devices = load();
+  var found = devices.filterByDescription('ALL');
+  gt.equal(found.length(), 10);
+});
