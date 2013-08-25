@@ -1,6 +1,8 @@
 var check = require('check-types');
 var csvLoad = require('csv-load-sync');
 var path = require('path');
+var allToUpperCase = require('./utils').allToUpperCase;
+var set = require('./utils').set;
 
 function Testers(filename) {
   this.testers = csvLoad(filename);
@@ -9,13 +11,6 @@ function Testers(filename) {
 Testers.prototype.length = function () {
   return this.testers.length;
 };
-
-function allToUpperCase(items) {
-  return items.map(function (item) {
-    check.verifyString(item, 'expected string item');
-    return item.toUpperCase();
-  });
-}
 
 Testers.prototype.filterByCountry = function (names) {
   if (check.isString(names)) {
@@ -28,10 +23,13 @@ Testers.prototype.filterByCountry = function (names) {
     return this;
   }
 
+  /*
   var countries = {};
   names.forEach(function (country) {
     countries[country] = true;
   });
+  */
+  var countries = set(names);
 
   this.testers = this.testers.filter(function (tester) {
     return countries[tester.country.toUpperCase()];

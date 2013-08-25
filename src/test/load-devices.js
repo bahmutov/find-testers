@@ -11,3 +11,9 @@ gt.test('load test data', function () {
   gt.equal(devices.devices[0].deviceId, '1', 'id is correct');
   gt.equal(devices.devices[0].description, 'iPhone 4');
 });
+
+gt.test('find Galaxy', function () {
+  var devices = load();
+  var found = devices.filterByDescription(['Galaxy S3', 'Galaxy S4']);
+  gt.equal(found.length(), 2, '2 Galaxy phone models');
+});
