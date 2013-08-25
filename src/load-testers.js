@@ -8,15 +8,24 @@ var loadDevices = require('./load-devices');
 var testerToDevice = csvLoad(path.join(__dirname, '../data/tester_device.csv'));
 console.assert(testerToDevice.length > 0, 'could not load tester to device');
 
-function hasDevice(devices) {
-  check.verifyString(this.testerId, 'missing tester id');
+var bugs = csvLoad(path.join(__dirname, '../data/bugs.csv'));
+console.assert(bugs.length > 0, 'could not load bugs info');
 
-  return false;
+function bugsDetected(testerId, deviceId) {
+  return bugs.reduce(function (sum, bug) {
+    if (bug.testerId === testerId &&
+      bug.deviceId === deviceId) {
+      return sum + 1;
+    } else {
+      return sum;
+    }
+  }, 0);
 }
 
 function Testers(filename) {
   this.testers = csvLoad(filename);
 
+  // attach device information
   this.testers.forEach(function (tester) {
     tester.devices = {};
     testerToDevice.forEach(function (t2d) {
@@ -24,10 +33,6 @@ function Testers(filename) {
         tester.devices[t2d.deviceId] = true;
       }
     });
-  });
-
-  this.testers.forEach(function (tester) {
-    tester.hasDevice = hasDevice;
   });
 }
 
@@ -67,7 +72,19 @@ Testers.prototype.filterByDevice = function (names) {
     });
   });
 
+  this.computeBugs();
+
   return this;
+}
+
+Testers.prototype.computeBugs = function () {
+  this.testers.forEach(function (tester) {
+    tester.bugs = 0;
+    var deviceIds = Object.keys(tester.devices);
+    tester.bugs = deviceIds.reduce(function (sum, id) {
+      return sum + bugsDetected(tester.testerId, id);
+    }, 0);
+  });
 }
 
 function load(filename) {
