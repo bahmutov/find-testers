@@ -1,6 +1,6 @@
 {
   "name": "find-testers",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Finds testers in given country with matching devices",
   "main": "index.js",
   "scripts": {
