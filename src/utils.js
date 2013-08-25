@@ -1,4 +1,4 @@
-check = require('check-types');
+var check = require('check-types');
 
 function allToUpperCase(items) {
   return items.map(function (item) {

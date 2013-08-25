@@ -65,7 +65,7 @@ Testers.prototype.filterByDevice = function (names) {
   });
 
   return this;
-}
+};
 
 Testers.prototype.computeBugs = function () {
   this.testers.forEach(function (tester) {
@@ -75,7 +75,7 @@ Testers.prototype.computeBugs = function () {
       return sum + bugs.bugsDetected(tester.testerId, id);
     }, 0);
   });
-}
+};
 
 function load(filename) {
   filename = filename || path.join(__dirname, '../data/testers.csv');
