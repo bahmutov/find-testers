@@ -4,23 +4,10 @@ var path = require('path');
 var allToUpperCase = require('./utils').allToUpperCase;
 var set = require('./utils').set;
 var loadDevices = require('./load-devices');
+var bugs = require('./load-bugs')();
 
 var testerToDevice = csvLoad(path.join(__dirname, '../data/tester_device.csv'));
 console.assert(testerToDevice.length > 0, 'could not load tester to device');
-
-var bugs = csvLoad(path.join(__dirname, '../data/bugs.csv'));
-console.assert(bugs.length > 0, 'could not load bugs info');
-
-function bugsDetected(testerId, deviceId) {
-  return bugs.reduce(function (sum, bug) {
-    if (bug.testerId === testerId &&
-      bug.deviceId === deviceId) {
-      return sum + 1;
-    } else {
-      return sum;
-    }
-  }, 0);
-}
 
 function Testers(filename) {
   this.testers = csvLoad(filename);
@@ -73,6 +60,9 @@ Testers.prototype.filterByDevice = function (names) {
   });
 
   this.computeBugs();
+  this.testers.sort(function (a, b) {
+    return b.bugs - a.bugs;
+  });
 
   return this;
 }
@@ -82,7 +72,7 @@ Testers.prototype.computeBugs = function () {
     tester.bugs = 0;
     var deviceIds = Object.keys(tester.devices);
     tester.bugs = deviceIds.reduce(function (sum, id) {
-      return sum + bugsDetected(tester.testerId, id);
+      return sum + bugs.bugsDetected(tester.testerId, id);
     }, 0);
   });
 }

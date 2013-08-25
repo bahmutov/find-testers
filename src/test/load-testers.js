@@ -83,9 +83,9 @@ gt.test('filter by country and device', function () {
 
 gt.test('have rating for phones', function () {
   var testers = load().filterByDevice('ALL');
-  // testers should be sorted, with most bugs first
   gt.equal(testers.length(), 9, '9 testers');
+  gt.ok(testers.testers[0].bugs >= testers.testers[1].bugs,
+    'testers are sorted in descending order');
   var first = testers.testers[0];
-  // console.log(first);
-  gt.equal(first.bugs, 114, 'best tester files 20 bugs on all devices');
+  gt.equal(first.bugs, 125, 'best tester files a lot of bugs on all devices');
 });
