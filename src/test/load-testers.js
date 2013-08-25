@@ -73,3 +73,10 @@ gt.test('filter by device - iPhone 4 case-insensitive', function () {
   var filtered = testers.filterByDevice('iphone 4');
   gt.equal(filtered.length(), 4, 'four testers have iphone 4');
 });
+
+gt.test('filter by country and device', function () {
+  var testers = load();
+  var filtered = testers.filterByCountry('US')
+    .filterByDevice('iphone 4');
+  gt.equal(filtered.length(), 2, 'two US testers have iphone 4');
+});
