@@ -65,5 +65,11 @@ gt.test('filter by device - allow ALL', function () {
 gt.test('filter by device - iPhone 4', function () {
   var testers = load();
   var filtered = testers.filterByDevice('iPhone 4');
-  gt.equal(filtered.length(), 2, 'two testers');
+  gt.equal(filtered.length(), 4, 'four testers have iphone 4');
+});
+
+gt.test('filter by device - iPhone 4 case-insensitive', function () {
+  var testers = load();
+  var filtered = testers.filterByDevice('iphone 4');
+  gt.equal(filtered.length(), 4, 'four testers have iphone 4');
 });

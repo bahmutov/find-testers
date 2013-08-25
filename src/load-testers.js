@@ -62,7 +62,9 @@ Testers.prototype.filterByDevice = function (names) {
   var acceptableIds = set(acceptableDevices.devices, 'deviceId');
 
   this.testers = this.testers.filter(function (tester) {
-    return false;
+    return Object.keys(tester.devices).some(function (deviceId) {
+      return acceptableIds[deviceId];
+    });
   });
 
   return this;
