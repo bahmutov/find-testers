@@ -27,6 +27,10 @@ Testers.prototype.length = function () {
   return this.testers.length;
 };
 
+Testers.prototype.values = function () {
+  return this.testers;
+};
+
 Testers.prototype.filterByCountry = function (names) {
   if (check.isString(names)) {
     names = [names];

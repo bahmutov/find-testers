@@ -4,7 +4,8 @@ var loadTesters = require('./src/load-testers');
 function find(countries, devices) {
   var testers = loadTesters();
   var inCountry = testers.filterByCountry(countries);
-
+  var usedDevice = inCountry.filterByDevice(devices);
+  return usedDevice.values();
 }
 
 module.exports = function findTesters (options) {

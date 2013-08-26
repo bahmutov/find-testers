@@ -1,18 +1,29 @@
 var path = require('path');
 var load = require('../load-testers');
+var check = require('check-types');
 
 gt.module('load testers');
 
 var filename = path.join(__dirname, 'testers.csv');
 
-gt.test('load test data', function () {
+gt.test('basics', function () {
   gt.arity(load, 1, 'load takes single argument');
+});
+
+gt.test('load test data', function () {
   var testers = load(filename);
   gt.defined(testers, 'loaded testers');
   gt.equal(testers.length(), 9, 'should have 9 testers');
   gt.equal(testers.testers[0].testerId, '1', 'id is correct');
   gt.equal(testers.testers[0].firstName, 'Miguel', 'first name');
   gt.equal(testers.testers[8].lastName, 'Thiagarajan', 'last name');
+});
+
+gt.test('values', function () {
+  var testers = load(filename);
+  gt.defined(testers, 'loaded testers');
+  gt.ok(check.isArray(testers.values()));
+  gt.equal(testers.values().length, 9);
 });
 
 gt.test('find by country ALL', function () {
@@ -88,4 +99,5 @@ gt.test('have rating for phones', function () {
     'testers are sorted in descending order');
   var first = testers.testers[0];
   gt.equal(first.bugs, 125, 'best tester files a lot of bugs on all devices');
+  gt.ok(check.isArray(testers.values()));
 });
