@@ -8,7 +8,7 @@ function find(countries, devices) {
   return usedDevice.values();
 }
 
-module.exports = function findTesters (options) {
+module.exports = function findTesters(options) {
   // input arguments
   options = options || {};
   var countries = options.country || options.countries || 'ALL';
