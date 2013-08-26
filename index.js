@@ -9,13 +9,14 @@ function find(countries, devices) {
 }
 
 module.exports = function findTesters (options) {
-  console.log('finding testers');
-
   // input arguments
   options = options || {};
   var countries = options.country || options.countries || 'ALL';
   console.assert(check.isString(countries) ||
     check.isArray(countries), 'wrong country format ' + countries);
+  var devices = options.device || options.devices || 'ALL';
 
+  console.log('finding testers in\n  country:', countries,
+    '\n  devices:', devices);
   return find(countries, devices);
 };
