@@ -19,4 +19,5 @@ gt.test('country and phone', function () {
     device: 'iphone 4'
   });
   gt.equal(found.length, 2, 'two US testers have iphone 4');
+  gt.ok(found[0].bugs >= found[1].bugs);
 });
