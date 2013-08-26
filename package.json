@@ -4,7 +4,8 @@
   "description": "Finds testers in given country with matching devices",
   "main": "index.js",
   "scripts": {
-    "test": "gt src/*.js src/**/test/*.js"
+    "test": "gt src/*.js src/**/test/*.js",
+    "complexity": "jsc index.js src/*.js"
   },
   "repository": "",
   "keywords": [
@@ -21,6 +22,7 @@
     "grunt-bump": "0.0.11",
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.6.3",
-    "matchdep": "~0.1.2"
+    "matchdep": "~0.1.2",
+    "jsc": "~0.3.5"
   }
 }
