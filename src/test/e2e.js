@@ -21,3 +21,13 @@ gt.test('country and phone', function () {
   gt.equal(found.length, 2, 'two US testers have iphone 4');
   gt.ok(found[0].bugs >= found[1].bugs);
 });
+
+gt.test('country and phones', function () {
+  var found = find({
+    country: 'US',
+    device: ['iphone 4', 'iphone 4s']
+  });
+  console.dir(found);
+  gt.equal(found.length, 2, 'two US testers have iphone 4');
+  gt.ok(found[0].bugs >= found[1].bugs);
+});
