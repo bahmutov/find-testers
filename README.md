@@ -1,5 +1,13 @@
 # Tester Matching
 
+## Installation and run
+
+Requires [nodejs](http://nodejs.org/), grab this repository, then
+
+    npm install // installs dependencies
+    npm test // runs unit tests
+    npm run-script complexity // shows complexity metrics
+
 ## Background
 
 A major feature of uTest is our tester-matching algorithm.  We are able to drilldown from a community of over 80k testers with multiple devices, to 10-20 testers that best meets a customer needs. As you can image, this is a complicated algorithm that takes multiple dimensions into account.
