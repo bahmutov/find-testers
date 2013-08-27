@@ -6,8 +6,8 @@ var set = require('./utils').set;
 var loadDevices = require('./load-devices');
 var bugs = require('./load-bugs')();
 
-var testerToDevice = csvLoad(path.join(__dirname, '../data/tester_device.csv'));
-console.assert(testerToDevice.length > 0, 'could not load tester to device');
+var defaultDataFolder = path.join(__dirname, '../data')
+var testerToDevice = [];
 
 function Testers(filename) {
   this.testers = csvLoad(filename);
@@ -81,8 +81,18 @@ Testers.prototype.computeBugs = function () {
   });
 };
 
-function load(filename) {
-  filename = filename || path.join(__dirname, '../data/testers.csv');
+function loadTesterToDevice(dataFolder) {
+  check.verifyString(dataFolder, 'missing data folder');
+  var filename = path.join(dataFolder, 'tester_device.csv');
+  testerToDevice = csvLoad(filename);
+  console.assert(testerToDevice.length > 0, 'could not load tester to device');
+}
+
+function load(filename, dataFolder) {
+  dataFolder = dataFolder || defaultDataFolder;
+  loadTesterToDevice(dataFolder);
+
+  filename = filename || path.join(dataFolder, 'testers.csv');
   return new Testers(filename);
 }
 

@@ -7,7 +7,7 @@ gt.module('load testers');
 var filename = path.join(__dirname, 'testers.csv');
 
 gt.test('basics', function () {
-  gt.arity(load, 1, 'load takes single argument');
+  gt.arity(load, 2, 'load takes single argument');
 });
 
 gt.test('load test data', function () {
