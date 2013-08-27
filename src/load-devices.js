@@ -4,7 +4,7 @@ var path = require('path');
 var allToUpperCase = require('./utils').allToUpperCase;
 var set = require('./utils').set;
 
-var defaultDataFolder = path.join(__dirname, '../data')
+var defaultDataFolder = path.join(__dirname, '../data');
 
 function Devices(filename) {
   check.verifyString(filename, 'expected string device filename');
