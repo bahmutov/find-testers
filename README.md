@@ -1,5 +1,9 @@
 # Tester Matching
 
+[![Build Status](https://travis-ci.org/bahmutov/find-testers.png)](https://travis-ci.org/bahmutov/find-testers)
+
+[![Package info](https://nodei.co/npm/find-testers.png?downloads=true)](https://nodei.co/npm/find-testers.png?downloads=true)
+
 ## Installation and run
 
 Requires [nodejs](http://nodejs.org/), grab this repository, then
