@@ -4,7 +4,7 @@
   "description": "Finds testers in given country with matching devices",
   "main": "index.js",
   "scripts": {
-    "test": "gt src/*.js src/**/test/*.js",
+    "test": "node ./node_modules/gt src/*.js src/**/test/*.js",
     "complexity": "jsc index.js src/*.js"
   },
   "repository": "",
