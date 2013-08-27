@@ -4,7 +4,10 @@ var path = require('path');
 var allToUpperCase = require('./utils').allToUpperCase;
 var set = require('./utils').set;
 
+var defaultDataFolder = path.join(__dirname, '../data')
+
 function Devices(filename) {
+  check.verifyString(filename, 'expected string device filename');
   this.devices = csvLoad(filename);
 }
 
@@ -31,8 +34,9 @@ Devices.prototype.filterByDescription = function (names) {
   return this;
 };
 
-function load(filename) {
-  filename = filename || path.join(__dirname, '../data/devices.csv');
+function load(filename, dataFolder) {
+  dataFolder = dataFolder || defaultDataFolder;
+  filename = filename || path.join(dataFolder, 'devices.csv');
   return new Devices(filename);
 }
 

@@ -61,3 +61,11 @@ gt.test('valid and invalid device', function () {
   });
   gt.equal(found.length, 2);
 });
+
+gt.test('iphone 4s in several countries', function () {
+  var found = find({
+    country: ['us', 'jp'],
+    device: ['iPhone 4S']
+  });
+  gt.equal(found.length, 2);
+});

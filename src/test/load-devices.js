@@ -3,8 +3,11 @@ var load = require('../load-devices');
 
 gt.module('load devices');
 
+gt.test('basics', function () {
+  gt.arity(load, 2, 'number of arguments');
+});
+
 gt.test('load test data', function () {
-  gt.arity(load, 1, 'load takes single argument');
   var devices = load();
   gt.defined(devices, 'loaded devices');
   gt.equal(devices.length(), 10, 'should have 10 devices');

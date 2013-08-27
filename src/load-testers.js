@@ -7,6 +7,9 @@ var loadDevices = require('./load-devices');
 var bugs = require('./load-bugs')();
 
 var defaultDataFolder = path.join(__dirname, '../data')
+
+// common global data
+var devices = [];
 var testerToDevice = [];
 
 function Testers(filename) {
@@ -51,7 +54,6 @@ Testers.prototype.filterByCountry = function (names) {
 };
 
 Testers.prototype.filterByDevice = function (names) {
-  var devices = loadDevices();
   console.assert(devices.length() > 0, 'loaded 0 devices');
 
   var acceptableDevices = devices.filterByDescription(names);
@@ -90,6 +92,7 @@ function loadTesterToDevice(dataFolder) {
 
 function load(filename, dataFolder) {
   dataFolder = dataFolder || defaultDataFolder;
+  devices = loadDevices(null, dataFolder);
   loadTesterToDevice(dataFolder);
 
   filename = filename || path.join(dataFolder, 'testers.csv');
