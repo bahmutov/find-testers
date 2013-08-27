@@ -75,19 +75,13 @@ Results: User3, User4
 
 How you output the results are up to you, there are no design requirements.
 
-## Submission
+## 3rd party modules
 
-Compress entire source code tree, include third-party jars and instructions how to run or access the running example.
+* [check-types](https://npmjs.org/package/check-types) for consistent type assertions
+* [gt](https://npmjs.org/package/gt) for unit and end to end testing
 
-## Presentation
+## Small print
 
-Brad will get in contact with you on scheduling time for you to present and walk through your solution. During the presentation, there will be a couple engineers that will ask various questions about the code.
-
-## Questions
-If you have questions or problems, feel free to email us to ask. We’re happy to provide input on whatever you like. For questions about the assignment, make sure to include these people in your email:
-
-* Miguel - miguelb@utest.com
-* Michael - michaell@utest.com
-* Taybin - trutkin@utest.com
-
-
+Author: Gleb Bahmutov <gleb.bahmutov@gmail.com>
+License: MIT
+Copyright &copy; 2013 Gleb Bahmutov
