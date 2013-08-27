@@ -1,5 +1,6 @@
 var check = require('check-types');
 
+// converting list of strings into all upper case
 function allToUpperCase(items) {
   return items.map(function (item) {
     check.verifyString(item, 'expected string item');
