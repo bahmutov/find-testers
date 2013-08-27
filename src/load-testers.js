@@ -15,15 +15,15 @@ var testerToDevice = [];
 
 function Testers(filename) {
   this.testers = csvLoad(filename);
+  this.testers.forEach(addOwnedDevice);
+}
 
-  // attach device information
-  this.testers.forEach(function (tester) {
-    tester.devices = {};
-    testerToDevice.forEach(function (t2d) {
-      if (t2d.testerId === tester.testerId) {
-        tester.devices[t2d.deviceId] = true;
-      }
-    });
+function addOwnedDevice(tester) {
+  tester.devices = {};
+  testerToDevice.forEach(function (t2d) {
+    if (t2d.testerId === tester.testerId) {
+      tester.devices[t2d.deviceId] = true;
+    }
   });
 }
 
@@ -66,15 +66,17 @@ Testers.prototype.filterByDevice = function (names) {
     });
   });
 
-  this.computeBugs();
-  this.testers.sort(function (a, b) {
-    return b.bugs - a.bugs;
-  });
+  this.computeBugsByTester();
+  this.testers.sort(higherBugsFirst);
 
   return this;
 };
 
-Testers.prototype.computeBugs = function () {
+function higherBugsFirst(a, b) {
+  return b.bugs - a.bugs;
+}
+
+Testers.prototype.computeBugsByTester = function () {
   this.testers.forEach(function (tester) {
     tester.bugs = 0;
     var deviceIds = Object.keys(tester.devices);
