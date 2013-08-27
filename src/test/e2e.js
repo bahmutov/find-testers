@@ -89,3 +89,14 @@ gt.test('two testers', function () {
   gt.equal(found[1].bugs, 0);
   // console.dir(found);
 });
+
+gt.test('two testers, all phones', function () {
+  var dataFolder = path.join(__dirname, 'data2testers');
+
+  var testers = find({
+    country: 'es',
+    dataFolder: dataFolder
+  });
+  console.dir(testers);
+  gt.equal(testers.length, 2);
+});

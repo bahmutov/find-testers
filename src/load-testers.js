@@ -66,7 +66,7 @@ Testers.prototype.filterByDevice = function (names) {
     });
   });
 
-  this.computeBugsByTester();
+  this.computeBugsByTester(acceptableIds);
   this.testers.sort(higherBugsFirst);
 
   return this;
@@ -76,12 +76,19 @@ function higherBugsFirst(a, b) {
   return b.bugs - a.bugs;
 }
 
-Testers.prototype.computeBugsByTester = function () {
+Testers.prototype.computeBugsByTester = function (allowedDeviceIds) {
+  console.assert(allowedDeviceIds, 'missing acceptable device ids object');
+
   this.testers.forEach(function (tester) {
     tester.bugs = 0;
     var deviceIds = Object.keys(tester.devices);
-    tester.bugs = deviceIds.reduce(function (sum, id) {
-      return sum + bugs.bugsDetected(tester.testerId, id);
+    var onlyCountDeviceIds = deviceIds.filter(function (id) {
+      return allowedDeviceIds[id];
+    });
+
+    tester.bugs = onlyCountDeviceIds.reduce(function (sum, id) {
+      var n = bugs.bugsDetected(tester.testerId, id);
+      return sum + n;
     }, 0);
   });
 };
