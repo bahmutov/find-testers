@@ -87,4 +87,5 @@ gt.test('two testers', function () {
 
   gt.equal(found[0].bugs, 2);
   gt.equal(found[1].bugs, 0);
+  // console.dir(found);
 });
