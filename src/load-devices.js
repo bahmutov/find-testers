@@ -21,6 +21,10 @@ Devices.prototype.filterByDescription = function (names) {
   }
   check.verifyArray(names, 'expected array of names');
 
+  // remove white space around the device names
+  names = names.map(function (name) {
+    return name.trim();
+  });
   names = allToUpperCase(names);
   if (names.length === 1 && names[0] === 'ALL') {
     return this;

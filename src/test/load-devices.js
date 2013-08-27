@@ -32,3 +32,9 @@ gt.test('all devices as string', function () {
   var found = devices.filterByDescription('ALL');
   gt.equal(found.length(), 10);
 });
+
+gt.test('find Galaxy (with spaces)', function () {
+  var devices = load();
+  var found = devices.filterByDescription([' Galaxy S3', '  Galaxy S4  ']);
+  gt.equal(found.length(), 2, '2 Galaxy phone models');
+});

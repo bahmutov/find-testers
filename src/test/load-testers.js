@@ -101,3 +101,15 @@ gt.test('have rating for phones', function () {
   gt.equal(first.bugs, 125, 'best tester files a lot of bugs on all devices');
   gt.ok(check.isArray(testers.values()));
 });
+
+gt.test('find by country ALL with white space', function () {
+  var testers = load(filename);
+  var found = testers.filterByCountry(' ALL ');
+  gt.equal(found.length, testers.length, 'all should match');
+});
+
+gt.test('find by country GB with white space', function () {
+  var testers = load(filename);
+  var found = testers.filterByCountry('  GB   ');
+  gt.equal(found.length(), 3, '3 testers in GB');
+});
