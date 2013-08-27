@@ -1,8 +1,8 @@
 var check = require('check-types');
 var loadTesters = require('./src/load-testers');
 
-function find(countries, devices) {
-  var testers = loadTesters();
+function find(countries, devices, dataFolder) {
+  var testers = loadTesters(null, dataFolder);
   var inCountry = testers.filterByCountry(countries);
   var usedDevice = inCountry.filterByDevice(devices);
   return usedDevice.values();
@@ -18,5 +18,5 @@ module.exports = function findTesters(options) {
 
   console.log('finding testers in\n  country:', countries,
     '\n  devices:', devices);
-  return find(countries, devices);
+  return find(countries, devices, options.dataFolder);
 };

@@ -4,11 +4,12 @@ var path = require('path');
 var allToUpperCase = require('./utils').allToUpperCase;
 var set = require('./utils').set;
 var loadDevices = require('./load-devices');
-var bugs = require('./load-bugs')();
+var loadBugs = require('./load-bugs');
 
-var defaultDataFolder = path.join(__dirname, '../data')
+var defaultDataFolder = path.join(__dirname, '../data');
 
 // common global data
+var bugs = [];
 var devices = [];
 var testerToDevice = [];
 
@@ -94,6 +95,7 @@ function load(filename, dataFolder) {
   dataFolder = dataFolder || defaultDataFolder;
   devices = loadDevices(null, dataFolder);
   loadTesterToDevice(dataFolder);
+  bugs = loadBugs(null, dataFolder);
 
   filename = filename || path.join(dataFolder, 'testers.csv');
   return new Testers(filename);

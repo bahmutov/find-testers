@@ -2,6 +2,7 @@ var path = require('path');
 var check = require('check-types');
 var csvLoad = require('csv-load-sync');
 
+var defaultDataFolder = path.join(__dirname, '../data');
 var bugs = null;
 
 function bugsDetected(testerId, deviceId) {
@@ -15,8 +16,9 @@ function bugsDetected(testerId, deviceId) {
   }, 0);
 }
 
-function load(filename) {
-  filename = filename || path.join(__dirname, '../data/bugs.csv');
+function load(filename, dataFolder) {
+  dataFolder = dataFolder || defaultDataFolder;
+  filename = filename || path.join(dataFolder, 'bugs.csv');
   check.verifyString(filename, 'expected filename');
 
   bugs = csvLoad(filename);

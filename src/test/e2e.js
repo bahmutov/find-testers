@@ -1,4 +1,5 @@
 var check = require('check-types');
+var path = require('path');
 
 gt.module('find testers end to end');
 
@@ -68,4 +69,22 @@ gt.test('iphone 4s in several countries', function () {
     device: ['iPhone 4S']
   });
   gt.equal(found.length, 2);
+});
+
+gt.module('e2e separate data folder');
+
+gt.test('two testers', function () {
+  var dataFolder = path.join(__dirname, 'data2testers');
+  var found = find({
+    country: 'es',
+    device: 'iphone 4',
+    dataFolder: dataFolder
+  });
+  gt.equal(found.length, 2);
+
+  gt.equal(found[0].testerId, '44');
+  gt.equal(found[1].testerId, '191');
+
+  gt.equal(found[0].bugs, 2);
+  gt.equal(found[1].bugs, 0);
 });
