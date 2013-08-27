@@ -26,10 +26,9 @@ Devices.prototype.filterByDescription = function (names) {
     return this;
   }
 
-  var descriptions = set(names);
-
+  var allowedDevices = set(names);
   this.devices = this.devices.filter(function (device) {
-    return descriptions[device.description.toUpperCase()];
+    return allowedDevices[device.description.toUpperCase()];
   });
   return this;
 };
