@@ -20,7 +20,7 @@
   "devDependencies": {
     "grunt": "0.4.5",
     "grunt-bump": "0.0.16",
-    "grunt-contrib-jshint": "0.10.0",
+    "grunt-contrib-jshint": "0.11.0",
     "gt": "0.8.47",
     "jsc": "0.3.11",
     "matchdep": "0.3.0"
